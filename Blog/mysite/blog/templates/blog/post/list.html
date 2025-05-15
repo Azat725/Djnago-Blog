@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    Blog
+{% endblock %}
+
+{% block content %}
+    <h1 style="text-align: center;">Blog</h1>
+
+    {% for post in posts %}
+        <div style="border: 1px solid #ccc; padding: 15px; margin-bottom: 15px; border-radius: 10px;">
+            <h2>
+                <a href="{{ post.get_absolute_url }}" style="text-decoration: none; color: #333;">
+                    {{ post.title }}
+                </a>
+            </h2>
+            <p style="color: #666;">Published {{ post.publish }} by {{ post.author }}</p>
+        </div>
+    {% empty %}
+        <p>No posts available.</p>
+    {% endfor %}
+
+    {% include "paginator.html" with page=posts %}
+{% endblock %}
