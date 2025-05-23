@@ -14,11 +14,14 @@
                     {{ post.title }}
                 </a>
             </h2>
-            <p style="color: #666;">Published {{ post.publish }} by {{ post.author }}</p>
+            <p style="color: #666;" class="date">
+                Published {{ post.publish }} by {{ post.author }}
+            </p>
+            {{ post.body|truncatechars:30|linebreaks }}
         </div>
     {% empty %}
         <p>No posts available.</p>
     {% endfor %}
 
-    {% include "paginator.html" with page=posts %}
+    {% include "paginator.html" with page=page_obj %}
 {% endblock %}
